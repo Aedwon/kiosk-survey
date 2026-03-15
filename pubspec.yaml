@@ -1,0 +1,37 @@
+name: hok_survey_kiosk
+description: A new Flutter project for the Honor of Kings survey kiosk.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  path_provider: ^2.1.2
+  csv: ^6.0.0
+  permission_handler: ^11.3.1
+  file_picker: ^8.1.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.1
+
+flutter:
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/HOK Background.png
+    - assets/HOK Festival of Lanterns text.png
+    - assets/HOK Logo.png
+    - assets/HOK Benefits Logo.png
+    - assets/HOK Character.png
+    - assets/HOK Character eye glow.png
+    - assets/HOK Character shadow.png
