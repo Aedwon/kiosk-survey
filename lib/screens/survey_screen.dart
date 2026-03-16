@@ -175,27 +175,30 @@ class _SurveyScreenState extends State<SurveyScreen>
           ),
         ],
       ),
-      child: TextField(
-        controller: _controllers[_currentStep],
-        style: const TextStyle(
-          color: Color(0xFF2C2C2C),
-          fontSize: 22,
-          fontWeight: FontWeight.w500,
-        ),
-        readOnly: true,
-        showCursor: true,
-        onTap: _showKeyboardPanel,
-        textAlign: TextAlign.center,
-        decoration: InputDecoration(
-          hintText: 'Type your answer here…',
-          hintStyle: TextStyle(
-            color: Colors.grey.withOpacity(0.5),
-            fontSize: 20,
-            fontStyle: FontStyle.italic,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(28), // Slightly less than 30 to account for border width
+        child: TextField(
+          controller: _controllers[_currentStep],
+          style: const TextStyle(
+            color: Color(0xFF2C2C2C),
+            fontSize: 22,
+            fontWeight: FontWeight.w500,
           ),
-          contentPadding:
-              const EdgeInsets.symmetric(horizontal: 28, vertical: 18),
-          border: InputBorder.none,
+          readOnly: true,
+          showCursor: true,
+          onTap: _showKeyboardPanel,
+          textAlign: TextAlign.center,
+          decoration: InputDecoration(
+            hintText: 'Type your answer here…',
+            hintStyle: TextStyle(
+              color: Colors.grey.withOpacity(0.5),
+              fontSize: 20,
+              fontStyle: FontStyle.italic,
+            ),
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 28, vertical: 18),
+            border: InputBorder.none,
+          ),
         ),
       ),
     );
