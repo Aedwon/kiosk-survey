@@ -63,56 +63,25 @@ class _WelcomeScreenState extends State<WelcomeScreen>
       body: AnimatedBackground(
         child: Stack(
           children: [
-            // Main content
-            Center(
+            // Main content (Tap anywhere detector)
+            Positioned.fill(
               child: GestureDetector(
                 behavior: HitTestBehavior.opaque,
                 onTap: () {
                   Navigator.pushNamed(context, '/survey');
                 },
                 child: Container(
-                  width: double.infinity,
-                  height: double.infinity,
+                  color: Colors.transparent,
                   alignment: Alignment.center,
                   child: AnimatedBuilder(
                     animation: _pulseController,
                     builder: (context, child) {
-                      return Transform.scale(
-                        scale: _pulseScale.value,
-                        child: Opacity(
-                          opacity: _pulseOpacity.value,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Tap Anywhere to Start',
-                                style:
-                                    Theme.of(context).textTheme.displayLarge,
-                                textAlign: TextAlign.center,
-                              ),
-                              const SizedBox(height: 40),
-                              Container(
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: AppTheme.gold.withOpacity(
-                                          0.3 + _pulseController.value * 0.3),
-                                      blurRadius:
-                                          20 + _pulseController.value * 20,
-                                      spreadRadius:
-                                          2 + _pulseController.value * 6,
-                                    ),
-                                  ],
-                                ),
-                                child: const Icon(
-                                  Icons.touch_app,
-                                  size: 90,
-                                  color: AppTheme.parchment,
-                                ),
-                              ),
-                            ],
-                          ),
+                      return Opacity(
+                        opacity: _pulseOpacity.value,
+                        child: Text(
+                          'Tap Anywhere to Start',
+                          style: Theme.of(context).textTheme.displayLarge,
+                          textAlign: TextAlign.center,
                         ),
                       );
                     },
@@ -131,6 +100,38 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                 child: const SizedBox(
                   width: 150,
                   height: 150,
+                ),
+              ),
+            ),
+
+            // CTA at bottom left
+            Positioned(
+              bottom: 40,
+              left: 100, // Moved to the right (was 40)
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/survey');
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppTheme.gold.withOpacity(0.3),
+                        blurRadius: 20,
+                        spreadRadius: 4,
+                      ),
+                    ],
+                  ),
+                  child: Image.asset(
+                    'assets/HOK BLUE CTA.png',
+                    width: 560, // Made larger (was 280)
+                    errorBuilder: (_, __, ___) => const Icon(
+                      Icons.touch_app,
+                      size: 90,
+                      color: AppTheme.parchment,
+                    ),
+                  ),
                 ),
               ),
             ),

@@ -28,10 +28,11 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/HOK Background.png
-    - assets/HOK Festival of Lanterns text.png
-    - assets/HOK Logo.png
-    - assets/HOK Benefits Logo.png
-    - assets/HOK Character.png
-    - assets/HOK Character eye glow.png
-    - assets/HOK Character shadow.png
+    - assets/HOK BLUE Background.png
+    - assets/HOK BLUE Benefits logo.png
+    - assets/HOK BLUE CTA.png
+    - assets/HOK BLUE Character.png
+    - assets/HOK BLUE Gold logo.png
+    - assets/HOK BLUE LEVEL INFINITE & TIMI Logo.png
+    - assets/HOK BLUE Sparkle 1.png
+    - assets/HOK BLUE Sparkle 2 radial.png

@@ -85,13 +85,13 @@ class _OnScreenKeyboardState extends State<OnScreenKeyboard> {
               height: 60,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                border: Border.all(color: const Color(0xFFD4AF37), width: 1),
+                border: Border.all(color: const Color(0xFF00BFFF), width: 1),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(
                 displayLabel,
                 style: const TextStyle(
-                  color: Color(0xFFFFFdd0),
+                  color: Colors.white,
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
@@ -119,10 +119,10 @@ class _OnScreenKeyboardState extends State<OnScreenKeyboard> {
               height: 60,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                border: Border.all(color: const Color(0xFFD4AF37), width: 1),
+                border: Border.all(color: const Color(0xFF00BFFF), width: 1),
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: Icon(icon, color: const Color(0xFFFFFdd0), size: 32),
+              child: Icon(icon, color: Colors.white, size: 32),
             ),
           ),
         ),

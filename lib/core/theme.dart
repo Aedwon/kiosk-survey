@@ -6,6 +6,7 @@ class AppTheme {
   static const Color gold = Color(0xFFD4AF37);
   static const Color parchment = Color(0xFFFFFdd0);
   static const Color deepRed = Color(0xFF8B0000);
+  static const Color hokBlue = Color(0xFF00BFFF); // Added blue to match CTA
 
   static ThemeData get theme {
     return ThemeData(

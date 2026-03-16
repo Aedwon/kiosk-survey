@@ -35,75 +35,88 @@ class _AnimatedBackgroundState extends State<AnimatedBackground> with SingleTick
         // 1. Base Layer
         Positioned.fill(
           child: Image.asset(
-            'assets/HOK Background.png',
+            'assets/HOK BLUE Background.png',
             fit: BoxFit.cover,
             errorBuilder: (context, error, stackTrace) => Container(color: Colors.black87),
           ),
         ),
         
-        // 2. Branding Layer
+        // 2. Branding Layers (Absolute Positioning)
+        // Top Left: Gold Logo
         Positioned(
           top: 32,
           left: 48,
-          right: 48,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Flexible(child: Image.asset('assets/HOK Logo.png', height: 100, fit: BoxFit.contain, errorBuilder: (_,__,___) => const SizedBox(height: 100))),
-              Flexible(flex: 2, child: Image.asset('assets/HOK Festival of Lanterns text.png', height: 140, fit: BoxFit.contain, errorBuilder: (_,__,___) => const SizedBox(height: 140))),
-              Flexible(child: Image.asset('assets/HOK Benefits Logo.png', height: 100, fit: BoxFit.contain, errorBuilder: (_,__,___) => const SizedBox(height: 100))),
-            ],
-          ),
+          child: Image.asset('assets/HOK BLUE Gold logo.png', height: 120, fit: BoxFit.contain, errorBuilder: (_,__,___) => const SizedBox(height: 120)),
         ),
         
-        // 3/4/5. Animated Layers
+        // Top Right: Benefits Logo
+        Positioned(
+          top: 56, // Moved lower (was 32)
+          right: 48,
+          child: Image.asset('assets/HOK BLUE Benefits logo.png', height: 110, fit: BoxFit.contain, errorBuilder: (_,__,___) => const SizedBox(height: 130)), // Made larger (was 90)
+        ),
+        
+        // Bottom Right: Level Infinite Logo
+        Positioned(
+          bottom: 32,
+          right: 48,
+          child: Image.asset('assets/HOK BLUE LEVEL INFINITE & TIMI Logo.png', height: 50, fit: BoxFit.contain, errorBuilder: (_,__,___) => const SizedBox(height: 50)),
+        ),
+        
+        // 3/4/5. Animated Layers (Sparkles and Character)
         Positioned.fill(
           child: AnimatedBuilder(
             animation: _controller,
             builder: (context, child) {
-              // Hover value: 0.0 (bottom) to 1.0 (top)
-              final hoverVal = _controller.value;
-              final translateY = hoverVal * -30.0;
-              final shadowScale = 1.0 - (hoverVal * 0.2); // 1.0 to 0.8
-              final shadowOpacity = 1.0 - (hoverVal * 0.4); // 1.0 to 0.6
-              final glowOpacity = 0.4 + (hoverVal * 0.6); // 0.4 to 1.0
+              final val = _controller.value;
+              final breathScale = 1.0 + (val * 0.05); // Subtle scale breathing 1.0 to 1.05
+              final breathOpacity = 0.6 + (val * 0.4); // Breathing opacity 0.6 to 1.0
               
               return Stack(
                 alignment: Alignment.center,
+                fit: StackFit.expand,
                 children: [
-                  // Shadow Layer
-                  Positioned(
-                    bottom: 20, 
-                    child: Transform.translate(
-                      offset: const Offset(-160, 0), // Shift slightly right from previous
-                      child: Transform.scale(
-                        scale: shadowScale,
-                        child: Opacity(
-                          opacity: shadowOpacity,
-                          child: Image.asset('assets/HOK Character shadow.png', width: 500, errorBuilder: (_,__,___) => const SizedBox()),
+                  // Sparkle 2 Radial (Background glow) - Maxed out, radiating from character, turned white
+                  Positioned.fill(
+                    child: Transform.scale(
+                      scale: breathScale,
+                      child: Opacity(
+                        opacity: breathOpacity,
+                        child: ColorFiltered(
+                          colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                          child: Image.asset(
+                            'assets/HOK BLUE Sparkle 2 radial.png',
+                            fit: BoxFit.cover,
+                            alignment: Alignment.center,
+                            errorBuilder: (_,__,___) => const SizedBox(),
+                          ),
                         ),
                       ),
                     ),
                   ),
                   
-                  // Character Layer
-                  Positioned(
-                    bottom: -20, // Slightly off bottom depending on crops
-                    child: Transform.translate(
-                      offset: Offset(0, translateY),
-                      child: Image.asset('assets/HOK Character.png', width: 700, errorBuilder: (_,__,___) => const SizedBox(width: 700)),
+                  // Character Layer - Maxed out and centered, static for now
+                  Positioned.fill(
+                    child: Image.asset(
+                      'assets/HOK BLUE Character.png', 
+                      fit: BoxFit.cover,
+                      alignment: Alignment.center,
+                      errorBuilder: (_,__,___) => const SizedBox(),
                     ),
                   ),
                   
-                  // Glow Layer
-                  Positioned(
-                    bottom: -20,
-                    child: Transform.translate(
-                      offset: Offset(0, translateY),
+                  // Foreground Sparkle 1 - Maxed and breathing
+                  Positioned.fill(
+                    child: Transform.scale(
+                      scale: breathScale,
                       child: Opacity(
-                        opacity: glowOpacity,
-                        child: Image.asset('assets/HOK Character eye glow.png', width: 700, errorBuilder: (_,__,___) => const SizedBox()),
+                        opacity: breathOpacity,
+                        child: Image.asset(
+                          'assets/HOK BLUE Sparkle 1.png', 
+                          fit: BoxFit.cover,
+                          alignment: Alignment.center,
+                          errorBuilder: (_,__,___) => const SizedBox(),
+                        ),
                       ),
                     ),
                   ),

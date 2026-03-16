@@ -113,7 +113,7 @@ class _SurveyScreenState extends State<SurveyScreen>
                 height: 3,
                 decoration: BoxDecoration(
                   color: completed
-                      ? AppTheme.gold
+                      ? AppTheme.hokBlue
                       : Colors.white.withOpacity(0.15),
                   borderRadius: BorderRadius.circular(2),
                 ),
@@ -131,14 +131,14 @@ class _SurveyScreenState extends State<SurveyScreen>
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
               color: isActive
-                  ? AppTheme.gold
+                  ? AppTheme.hokBlue
                   : isCompleted
-                      ? AppTheme.gold.withOpacity(0.7)
+                      ? AppTheme.hokBlue.withOpacity(0.7)
                       : Colors.white.withOpacity(0.2),
               boxShadow: isActive
                   ? [
                       BoxShadow(
-                        color: AppTheme.gold.withOpacity(0.6),
+                        color: AppTheme.hokBlue.withOpacity(0.6),
                         blurRadius: 12,
                         spreadRadius: 2,
                       )
@@ -159,12 +159,12 @@ class _SurveyScreenState extends State<SurveyScreen>
         color: Colors.white.withOpacity(0.92),
         borderRadius: BorderRadius.circular(30),
         border: Border.all(
-          color: AppTheme.gold,
+          color: AppTheme.hokBlue,
           width: 2.5,
         ),
         boxShadow: [
           BoxShadow(
-            color: AppTheme.gold.withOpacity(0.25),
+            color: AppTheme.hokBlue.withOpacity(0.25),
             blurRadius: 20,
             spreadRadius: 2,
           ),
@@ -224,13 +224,13 @@ class _SurveyScreenState extends State<SurveyScreen>
               : Colors.white.withOpacity(0.3),
           borderRadius: BorderRadius.circular(30),
           border: Border.all(
-            color: enabled ? AppTheme.gold : Colors.white.withOpacity(0.2),
+            color: enabled ? AppTheme.hokBlue : Colors.white.withOpacity(0.2),
             width: 2,
           ),
           boxShadow: enabled
               ? [
                   BoxShadow(
-                    color: AppTheme.gold.withOpacity(0.2),
+                    color: AppTheme.hokBlue.withOpacity(0.2),
                     blurRadius: 12,
                     spreadRadius: 1,
                   ),
@@ -264,7 +264,7 @@ class _SurveyScreenState extends State<SurveyScreen>
                   Icon(
                     icon,
                     color: enabled
-                        ? AppTheme.gold
+                        ? AppTheme.hokBlue
                         : Colors.grey.withOpacity(0.5),
                     size: 22,
                   ),
