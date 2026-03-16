@@ -48,7 +48,7 @@ class _AnimatedBackgroundState extends State<AnimatedBackground> with SingleTick
           right: 48,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Flexible(child: Image.asset('assets/HOK Logo.png', height: 100, fit: BoxFit.contain, errorBuilder: (_,__,___) => const SizedBox(height: 100))),
               Flexible(flex: 2, child: Image.asset('assets/HOK Festival of Lanterns text.png', height: 140, fit: BoxFit.contain, errorBuilder: (_,__,___) => const SizedBox(height: 140))),
