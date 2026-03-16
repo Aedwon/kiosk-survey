@@ -27,7 +27,7 @@ class _SurveyScreenState extends State<SurveyScreen>
     TextEditingController(),
     TextEditingController(),
   ];
-  bool _showKeyboard = true; // auto-show keyboard
+  bool _showKeyboard = false; // hidden by default, shown on tap
   bool _isSubmitting = false;
 
   // ── Animation ──
@@ -71,7 +71,7 @@ class _SurveyScreenState extends State<SurveyScreen>
     await _fadeController.reverse();
     setState(() {
       _currentStep = step;
-      _showKeyboard = true;
+      _showKeyboard = false; // Hide when moving to next step
     });
     _fadeController.forward();
   }
@@ -318,9 +318,9 @@ class _SurveyScreenState extends State<SurveyScreen>
                               _questions[_currentStep],
                               style: TextStyle(
                                 color: AppTheme.parchment,
-                                fontSize: 30,
+                                fontSize: 36, // Increased font size
                                 fontWeight: FontWeight.bold,
-                                height: 1.3,
+                                height: 1.25,
                                 shadows: [
                                   Shadow(
                                     color: Colors.black.withOpacity(0.7),
