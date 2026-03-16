@@ -97,7 +97,12 @@ class _AdminScreenState extends State<AdminScreen> {
       // Prepare CSV data
       List<List<dynamic>> rows = [];
       // Header
-      rows.add(["Timestamp", "Q1_Answer", "Q2_Answer", "Q3_Answer"]);
+      rows.add([
+        "Timestamp",
+        "What improvements would you like to see in HOK Benefits?",
+        "What new feature would you like to see added in the future for HOK Benefits?",
+        "What redeemable prizes would you like to be added on HOK Benefits?"
+      ]);
       
       for (var entry in entries) {
         rows.add([
