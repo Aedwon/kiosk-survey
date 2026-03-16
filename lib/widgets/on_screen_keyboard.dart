@@ -23,6 +23,10 @@ class _OnScreenKeyboardState extends State<OnScreenKeyboard> {
     // Apply shift if it's a letter and we're on the letter keyboard
     if (!_isSymbols && text.length == 1 && text.toLowerCase() != text.toUpperCase()) {
       processedText = _isShift ? text.toUpperCase() : text.toLowerCase();
+      // Auto-release shift after typing a letter (like a phone keyboard)
+      if (_isShift) {
+        setState(() => _isShift = false);
+      }
     }
 
     final int cursorPos = widget.controller.selection.base.offset;
