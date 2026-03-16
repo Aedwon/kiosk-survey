@@ -116,7 +116,7 @@ class _AnimatedBackgroundState extends State<AnimatedBackground> with SingleTick
         // 6. Overlay Layer
         Positioned.fill(
           child: Container(
-            color: Colors.black.withOpacity(0.40),
+            color: Colors.black.withOpacity(0.25),
           ),
         ),
         
