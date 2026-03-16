@@ -318,7 +318,7 @@ class _SurveyScreenState extends State<SurveyScreen>
                               _questions[_currentStep],
                               style: TextStyle(
                                 color: AppTheme.parchment,
-                                fontSize: 36, // Increased font size
+                                fontSize: 72, // Increased font size per request
                                 fontWeight: FontWeight.bold,
                                 height: 1.25,
                                 shadows: [
