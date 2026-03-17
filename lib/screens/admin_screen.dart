@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:convert';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'web_export_stub.dart' if (dart.library.html) 'web_export_web.dart' as web_helper;
@@ -132,6 +133,7 @@ class _AdminScreenState extends State<AdminScreen> {
         fileName: 'survey_exports_${DateTime.now().millisecondsSinceEpoch}.csv',
         type: FileType.custom,
         allowedExtensions: ['csv'],
+        bytes: Uint8List.fromList(utf8.encode(csv)),
       );
 
       if (outputFile == null) {
@@ -143,8 +145,10 @@ class _AdminScreenState extends State<AdminScreen> {
         return;
       }
 
-      final File file = File(outputFile);
-      await file.writeAsString(csv);
+      if (!Platform.isAndroid && !Platform.isIOS) {
+        final File file = File(outputFile);
+        await file.writeAsString(csv);
+      }
 
       setState(() {
         _statusMessage = 'Export successful!\nSaved to: $outputFile';
