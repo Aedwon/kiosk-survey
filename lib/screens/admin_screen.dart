@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:convert';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'web_export_stub.dart' if (dart.library.html) 'web_export_web.dart' as web_helper;
 import 'package:path_provider/path_provider.dart';
@@ -20,6 +21,7 @@ class AdminScreen extends StatefulWidget {
 }
 
 class _AdminScreenState extends State<AdminScreen> {
+  static const platform = MethodChannel('com.example.survey/kiosk');
   final TextEditingController _pinController = TextEditingController();
   bool _isAuthenticated = false;
   bool _isExporting = false;
@@ -59,6 +61,36 @@ class _AdminScreenState extends State<AdminScreen> {
       _isKeyboardVisible = false;
     });
     FocusScope.of(context).unfocus();
+  }
+
+  Future<void> _exitKioskMode() async {
+    final confirm = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Exit Application?'),
+        content: const Text('This will unpin the app and return to the TV Home Screen.'),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('Cancel')),
+          TextButton(onPressed: () => Navigator.pop(context, true), child: const Text('Exit Kiosk', style: TextStyle(color: Colors.red))),
+        ],
+      ),
+    );
+
+    if (confirm == true) {
+      if (!kIsWeb && Platform.isAndroid) {
+        try {
+          // Tell native Android layer to unpin (stopLockTask) and kill the app
+          await platform.invokeMethod('stopKioskMode');
+        } on PlatformException catch (e) {
+          setState(() {
+            _statusMessage = "Failed to exit Kiosk Mode: '${e.message}'.";
+          });
+        }
+      } else {
+        // Fallback for non-Android platforms (like Web/Mac testing)
+        SystemNavigator.pop();
+      }
+    }
   }
 
   Future<void> _exportToCsv() async {
@@ -263,6 +295,20 @@ class _AdminScreenState extends State<AdminScreen> {
                     onPressed: _clearData,
                     icon: const Icon(Icons.delete_forever),
                     label: const FittedBox(child: Text('CLEAR DATA')),
+                  ),
+                ),
+                const SizedBox(width: 32),
+                Expanded(
+                  flex: 1, // Optional emphasis over other buttons
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.redAccent[700],
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                    ),
+                    onPressed: _exitKioskMode,
+                    icon: const Icon(Icons.power_settings_new),
+                    label: const FittedBox(child: Text('EXIT APP')),
                   ),
                 ),
               ],
