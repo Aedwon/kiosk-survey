@@ -92,99 +92,98 @@ class _WelcomeScreenState extends State<WelcomeScreen>
 
             // Center Content: QR, Text, and CTA
             Center(
-              child: Column(
+              child: Row(
                 mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // QR and Text Row
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      // QR Code Container with white background and padding
-                      Container(
-                        padding: const EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(24),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.5),
-                              blurRadius: 15,
-                              spreadRadius: 2,
-                            ),
-                          ],
+                  // QR Code Container with white background and padding
+                  Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(24),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.5),
+                          blurRadius: 15,
+                          spreadRadius: 2,
                         ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
-                          child: Image.asset(
-                            'assets/qr_code_image.JPEG',
-                            width: 220,
-                            height: 220,
-                            fit: BoxFit.cover,
+                      ],
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Image.asset(
+                        'assets/qr_code_image.JPEG',
+                        width: 220,
+                        height: 220,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 40),
+                  // Column for Text and CTA to keep them vertically aligned with each other
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start, // Align CTA with the first letter of the text
+                    children: [
+                      // Text next to QR, wrapped in Container and FittedBox for single-line scaling
+                      Container(
+                        constraints: const BoxConstraints(maxWidth: 800), // Prevent it from getting absurdly wide
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown, // Shrinks text if it exceeds available space
+                          alignment: Alignment.centerLeft, // Keep text anchored to the left
+                          child: Text(
+                            'TRY HOK BENEFITS NOW!', 
+                            style: Theme.of(context).textTheme.displayLarge?.copyWith(
+                              fontSize: 96, 
+                              fontWeight: FontWeight.w900,
+                              height: 1.1,
+                              color: AppTheme.parchment,
+                              shadows: [
+                                Shadow(
+                                  color: AppTheme.gold.withOpacity(0.4),
+                                  blurRadius: 20,
+                                  offset: const Offset(0, 4),
+                                ),
+                                const Shadow(
+                                  color: Colors.black54,
+                                  blurRadius: 10,
+                                  offset: Offset(2, 2),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                      const SizedBox(width: 40),
-                      // Text next to QR, wrapped in Flexible and FittedBox for single-line scaling
-                      Flexible(
+                      const SizedBox(height: 40), // Space between text and CTA
+                      // Enlarged CTA Button Centered Underneath Text
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/survey');
+                        },
                         child: Container(
-                          constraints: const BoxConstraints(maxWidth: 800), // Prevent it from getting absurdly wide
-                          child: FittedBox(
-                            fit: BoxFit.scaleDown, // Shrinks text if it exceeds available space
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              'TRY HOK BENEFITS NOW!', // Removed \n
-                              style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                                fontSize: 96, // Started larger; FittedBox will scale it down if needed
-                                fontWeight: FontWeight.w900,
-                                height: 1.1,
-                                color: AppTheme.parchment,
-                                shadows: [
-                                  Shadow(
-                                    color: AppTheme.gold.withOpacity(0.4),
-                                    blurRadius: 20,
-                                    offset: const Offset(0, 4),
-                                  ),
-                                  const Shadow(
-                                    color: Colors.black54,
-                                    blurRadius: 10,
-                                    offset: Offset(2, 2),
-                                  ),
-                                ],
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            boxShadow: [
+                              BoxShadow(
+                                color: AppTheme.gold.withOpacity(0.3),
+                                blurRadius: 40,
+                                spreadRadius: 10,
                               ),
+                            ],
+                          ),
+                          child: Image.asset(
+                            'assets/HOK BLUE CTA.png',
+                            width: 580, 
+                            errorBuilder: (_, __, ___) => const Icon(
+                              Icons.touch_app,
+                              size: 120,
+                              color: AppTheme.parchment,
                             ),
                           ),
                         ),
                       ),
                     ],
-                  ),
-                  const SizedBox(height: 80),
-                  // Enloged CTA Button Centered Underneath
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/survey');
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            color: AppTheme.gold.withOpacity(0.3),
-                            blurRadius: 40,
-                            spreadRadius: 10,
-                          ),
-                        ],
-                      ),
-                      child: Image.asset(
-                        'assets/HOK BLUE CTA.png',
-                        width: 580, // Enlarged significantly
-                        errorBuilder: (_, __, ___) => const Icon(
-                          Icons.touch_app,
-                          size: 120,
-                          color: AppTheme.parchment,
-                        ),
-                      ),
-                    ),
                   ),
                 ],
               ),
