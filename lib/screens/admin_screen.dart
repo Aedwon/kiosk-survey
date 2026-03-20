@@ -36,14 +36,14 @@ class _AdminScreenState extends State<AdminScreen> {
   }
 
   void _verifyPin() {
-    if (_pinController.text == '2026') {
+    if (_pinController.text == 'HOKFestivalOfLanterns03212026') {
       setState(() {
         _isAuthenticated = true;
         _totalEntries = surveyRepo.getAllEntries().length;
       });
     } else {
       setState(() {
-        _statusMessage = 'Incorrect PIN';
+        _statusMessage = 'Incorrect Password';
         _pinController.clear();
       });
     }
@@ -236,9 +236,9 @@ class _AdminScreenState extends State<AdminScreen> {
             TextField(
               controller: _pinController,
               obscureText: true,
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.text,
               style: const TextStyle(color: Colors.white, fontSize: 24),
-              decoration: const InputDecoration(hintText: 'Enter PIN'),
+              decoration: const InputDecoration(hintText: 'Enter Password'),
               readOnly: true, // Prevent system keyboard
               showCursor: true,
               onTap: _showKeyboard,
